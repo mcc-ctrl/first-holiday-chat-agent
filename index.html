@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chatbot</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <h1>First Holiday</h1>
+    <!-- <img src="./images/plane-logo3.jpeg" height="400vh" alt="Chatbot clipart"> -->
+    <div id="container" class="container">
+
+        <div id="chat" class="chat">
+            <h2>First Holiday Chat Agent</h2>
+            <div id="messages" class="messages"></div>
+            <button id="filter-button" onclick="showForm()" style="display: none;">Yes</button>
+            <input id="input" type="text" placeholder="Write something..." autocomplete="off" autofocus="true" />
+
+        </div>
+    </div>
+
+
+    <form id="filter-form" style="display: none;">
+
+
+        <!-- <label for="country">Country:</label>
+        <input type="text" id="country"> -->
+
+        <label for="country">Choose a country:</label>
+        <select id="country" name="country">
+            <option value=""></option>
+            <option value="">Clear</option>
+            <option value="Indonesia">Indonesia</option>
+            <option value="USA">USA</option>
+            <option value="Ireland">Ireland</option>
+            <option value="Morocco">Morocco</option>
+            <option value="Australia">Australia</option>
+            <option value="The Maldives">The Maldives</option>
+            <option value="France">France</option>
+            <option value="South Africa">South Africa</option>
+            <option value="U.A.E">U.A.E</option>
+            <option value="French Polynesia">French Polynesia</option>
+            <option value="Croatia">Croatia</option>
+            <option value="Scotland">Scotland</option>
+            <option value="Italy">Italy</option>
+            <option value="Bhutan">Bhutan</option>
+            <option value="India">India</option>
+            <option value="New Zealand">New Zealand</option>
+            <option value="Cuba">Cuba</option>
+            <option value="Japan">Japan</option>
+            <option value="Antartica">Antartica</option>
+            <option value="Greenland">Greenland</option>
+        </select>
+
+        <label for="city">City:</label>
+        <input type="text" id="city">
+
+        <label for="hotelName">Hotel:</label>
+        <input type="text" id="hotelName">
+
+        <label for="maxPrice">Max Price:</label>
+        <input type="number" id="maxPrice">
+
+        <button type="submit">View Holiday Packages</button>
+    </form>
+
+    <table id="output"></table>
+
+
+    <script src="script.js"></script>
+</body>
+
+</html>
