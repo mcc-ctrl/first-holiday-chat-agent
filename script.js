@@ -1,5 +1,7 @@
 
 //START CHATBOT LOGIC
+
+//allows users to hit the enter key on their keyboard
 const inputField = document.getElementById("input");
 inputField.addEventListener("keydown", (e) => {
     if (e.code === "Enter") {
@@ -9,23 +11,17 @@ inputField.addEventListener("keydown", (e) => {
     }
 });
 
+//Takes user input and adjusts for different use of grammar
 function output(input) {
     let product;
-
     let text = input.toLowerCase();
-    console.log(text, "Initial text");
-
     text = input.toLowerCase().replace(/[^\w\s\d]/gi, "");
-    console.log(text, "Secondary text");
-
     text = text
         .replace(/ a /g, " ")
         .replace(/whats/g, "what is")
         .replace(/please /g, "")
         .replace(/ please/g, "")
         .replace(/r u/g, "are you");
-
-    console.log(text, "Third text");
 
     if (compare(utterances, answers, text)) {
         // Search for exact match in triggers
@@ -38,8 +34,9 @@ function output(input) {
     addChatEntry(input, product);
 }
 
+//Loops through utterences and answers arrays using array index to match accordingly.
+//Also looks for inputs including the words 'holiday and 'flight' in order to initiate question to guide the user onto the packages table 
 function compare(utterancesArray, answersArray, string) {
-    console.log(typeof string, 'typeof');
     let reply;
     let replyFound = false;
     for (let x = 0; x < utterancesArray.length; x++) {
@@ -69,7 +66,7 @@ function compare(utterancesArray, answersArray, string) {
 
 }
 
-
+//Adds chat entry from user and bot to <div> elements on DOM
 function addChatEntry(input, product) {
     const messagesContainer = document.getElementById("messages");
     let userDiv = document.createElement("div");
@@ -129,19 +126,21 @@ const answers = [
 
 const alternatives = [
     "Go on...",
-    "Try again",
+    "Sorry, I didn't catch that.",
 ];
 //END UTTERANCES
 
 //START FILTER FORM LOGIC
+//Displays form to user
 function showForm() {
     document.getElementById("filter-form").style.display = "block";
     document.getElementById("filter-button").style.display = "none";
 }
+//Disoplays button to user 
 function showFilterBtn() {
     document.getElementById("filter-button").style.display = "block";
 }
-
+//submits form entry to display package table
 document.getElementById("filter-form").addEventListener("submit", function (e) {
     e.preventDefault();
     getData();
@@ -149,7 +148,7 @@ document.getElementById("filter-form").addEventListener("submit", function (e) {
 
 
 
-
+//Retrieves the data that is displayed in JSON fromat using fetch method from local host URL
 function getData() {
     dataContainer = document.querySelector('#data');
 
@@ -162,6 +161,7 @@ function getData() {
             }
         })
         .then(data => {
+            //adjusts for potential grammar differences by user and returns matching data from the fetch
             function filterPackages(data, hotelName, city, country, maxPrice) {
                 hotelName = hotelName ? hotelName.trim().toLowerCase() : "";
                 city = city ? city.trim().toLowerCase() : "";
@@ -184,54 +184,54 @@ function getData() {
                 });
             }
 
-            document.getElementById("filter-form").addEventListener("submit", function (e) {
-                e.preventDefault();
-                const hotelNameInput = document.getElementById("hotelName");
-                const cityInput = document.getElementById("city");
-                const countryInput = document.getElementById("country");
-                const maxPriceInput = document.getElementById("maxPrice");
 
-                const hotelName = hotelNameInput ? hotelNameInput.value : "";
-                const city = cityInput ? cityInput.value : "";
-                const country = countryInput ? countryInput.value : "";
-                const maxPrice = maxPriceInput ? maxPriceInput.value : "";
+            const hotelNameInput = document.getElementById("hotelName");
+            const cityInput = document.getElementById("city");
+            const countryInput = document.getElementById("country");
+            const maxPriceInput = document.getElementById("maxPrice");
 
-                const filteredPackages = filterPackages(data.data, hotelName, city, country, maxPrice);
+            const hotelName = hotelNameInput ? hotelNameInput.value : "";
+            const city = cityInput ? cityInput.value : "";
+            const country = countryInput ? countryInput.value : "";
+            const maxPrice = maxPriceInput ? maxPriceInput.value : "";
 
-                const table = document.getElementById("output");
-                table.innerHTML = "";
+            const filteredPackages = filterPackages(data.data, hotelName, city, country, maxPrice);
 
-                const thead = table.createTHead();
-                const row = thead.insertRow();
-                const hotelNameHead = row.insertCell();
-                hotelNameHead.innerHTML = "Hotel Name";
-                const cityHead = row.insertCell();
-                cityHead.innerHTML = "City";
-                const countryHead = row.insertCell();
-                countryHead.innerHTML = "Country";
-                const starRatingHead = row.insertCell();
-                starRatingHead.innerHTML = "Star Rating";
-                const priceHead = row.insertCell();
-                priceHead.innerHTML = "Price Per Night";
-                const tbody = table.createTBody();
+            const table = document.getElementById("output");
+            table.innerHTML = "";
 
-                for (i = 0; i < filteredPackages.length; i++) {
-                    const package = filteredPackages[i];
-                    const row = tbody.insertRow();
-                    const hotelNameCell = row.insertCell();
-                    hotelNameCell.innerHTML = package.HotelName;
-                    const cityCell = row.insertCell();
-                    cityCell.innerHTML = package.City;
-                    const countryCell = row.insertCell();
-                    countryCell.innerHTML = package.Country;
-                    const starRatingCell = row.insertCell();
-                    starRatingCell.innerHTML = package.StarRating;
-                    const priceCell = row.insertCell();
-                    priceCell.innerHTML = package.PricePerPerNight;
-                }
-            });
+            //creates table
+            const thead = table.createTHead();
+            const row = thead.insertRow();
+            const hotelNameHead = row.insertCell();
+            hotelNameHead.innerHTML = "Hotel Name";
+            const cityHead = row.insertCell();
+            cityHead.innerHTML = "City";
+            const countryHead = row.insertCell();
+            countryHead.innerHTML = "Country";
+            const starRatingHead = row.insertCell();
+            starRatingHead.innerHTML = "Star Rating";
+            const priceHead = row.insertCell();
+            priceHead.innerHTML = "Price Per Night";
+            const tbody = table.createTBody();
+
+            //inserts cell information 
+            for (i = 0; i < filteredPackages.length; i++) {
+                const package = filteredPackages[i];
+                const row = tbody.insertRow();
+                const hotelNameCell = row.insertCell();
+                hotelNameCell.innerHTML = package.HotelName;
+                const cityCell = row.insertCell();
+                cityCell.innerHTML = package.City;
+                const countryCell = row.insertCell();
+                countryCell.innerHTML = package.Country;
+                const starRatingCell = row.insertCell();
+                starRatingCell.innerHTML = package.StarRating;
+                const priceCell = row.insertCell();
+                priceCell.innerHTML = package.PricePerPerNight;
+            }
+            ;
         })
         .catch((error) => console.error("FETCH ERROR:", error));
 }
-
-        //START FILTER FORM LOGIC
+//END FILTER FORM LOGIC

@@ -3,12 +3,14 @@ body {
     color: #fff;
     font-family: Arial, sans-serif;
     font-size: 12px;
+    margin: 0;
 }
 
 h1 {
     color: #F3D96E;
     background-color: #1e39b4;
     padding: 10px;
+    margin: 0 0 20px 0;
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -16,6 +18,17 @@ h1 {
 }
 
 h2 {
+    color: #F3D96E;
+    background-color: #1e3ab4;
+    padding: 10px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    border-radius: 10px;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+h3 {
     color: #F3D96E;
     background-color: #1e3ab4;
     padding: 10px;
@@ -102,10 +115,11 @@ button:focus {
 }
 
 button {
-    background-color: #1e39b4;
+    color: #1e39b4;
+    background-color: #F3D96E;
     border: none;
     border-radius: 10px;
-    color: #fff;
+
     margin: 5px;
     padding: 10px;
     font-size: 12px;
@@ -147,7 +161,7 @@ label {
     display: block;
     font-weight: bold;
     margin-bottom: 10px;
-    background: #1e3ab4d4;
+    background: #1e39b4;
     max-width: fit-content;
     border-radius: 10px;
     padding: 5px;
@@ -182,7 +196,12 @@ table {
 
 thead {
     color: #040706;
+    background-color: #1e39b4;
     font-size: 1rem;
+}
+
+thead td {
+    color: #F3D96E;
 }
 
 td {
