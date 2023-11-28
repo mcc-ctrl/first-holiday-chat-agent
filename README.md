@@ -1,6 +1,6 @@
 Step 1
 
-Start the MySQL server
+Start the MySQL server and initialize node dependencies with the 'npm init' command.
  
 
 For this web app I am using a MySQL server hosted locally on my machine. This is to enable me to create a database using the data provided in the brief. 
