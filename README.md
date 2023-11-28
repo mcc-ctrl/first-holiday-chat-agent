@@ -3,7 +3,7 @@ Step 1
 Start the MySQL server
  
 
-For this web app I am using a MySQL server hosted locally on my machine. This is to enable me to create a database using the data provided in the brief. The API then uses a get function to 
+For this web app I am using a MySQL server hosted locally on my machine. This is to enable me to create a database using the data provided in the brief. 
 
 Step 2
 
